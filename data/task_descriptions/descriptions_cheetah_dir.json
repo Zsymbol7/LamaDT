@@ -1,0 +1,4 @@
+{
+  "forward": "Control the robot to move forward as fast as possible in the +x direction.",
+  "backward": "Control the robot to move backward as fast as possible in the -x direction."
+}

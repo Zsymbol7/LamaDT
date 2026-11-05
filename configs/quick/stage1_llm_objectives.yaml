@@ -1,0 +1,33 @@
+experiment_name: "quick_stage1_llm_objectives"
+
+model:
+  name: "llama-3.2-1b"
+  lora:
+    rank: 8
+    alpha: 16
+    dropout: 0.05
+
+data:
+  offline_root: "data/offline/dummy"
+  task_description_path: "data/task_descriptions/descriptions_dummy.json"
+  state_dim: 20
+  action_dim: 6
+  max_trajectory_length: 40
+  trajectory_window: 10
+
+training:
+  total_steps: 50
+  batch_size: 4
+  lr: 1.0e-4
+  weight_decay: 0.01
+  warmup_steps: 5
+  gradient_accumulation: 1
+  max_grad_norm: 1.0
+  objectives: ["O1", "O2", "O3", "O4", "O5", "O6"]
+  objective_sampling: "uniform"
+
+logging:
+  log_every: 10
+  save_every: 50
+  output_dir: "experiments/quick/llm_objectives"
+  seed: 42

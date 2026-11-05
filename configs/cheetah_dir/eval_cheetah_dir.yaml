@@ -1,0 +1,25 @@
+experiment_name: "eval_cheetah_dir_norm"
+
+model:
+  name: "llama-3.2-1b"
+  policy_lora:
+    rank: 16
+    alpha: 32
+    dropout: 0.05
+
+data:
+  task_description_path: "data/task_descriptions/descriptions_cheetah_dir.json"
+  state_dim: 20
+  action_dim: 6
+
+eval:
+  policy_lora_checkpoint: "experiments/cheetah_dir/lamadt_policy_v4/checkpoints/policy_lora_final.pt"
+  result_path: "experiments/cheetah_dir/results_norm.json"
+
+env:
+  benchmark: "cheetah_dir"
+  num_episodes_per_task: 50
+  max_episode_steps: 200
+
+training:
+  context_length: 20

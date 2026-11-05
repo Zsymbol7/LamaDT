@@ -1,0 +1,9 @@
+# Core
+torch>=2.1
+transformers>=4.40
+numpy
+pyyaml
+
+# Online evaluation (optional)
+gymnasium[mujoco]
+# metaworld   # uncomment for Meta-World evaluation

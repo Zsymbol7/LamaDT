@@ -1,0 +1,31 @@
+experiment_name: "quick_stage4_eval_offline"
+
+# No env.benchmark specified -> falls back to offline action-prediction eval
+# (no mujoco / metaworld install required).
+
+model:
+  name: "llama-3.2-1b"
+  policy_lora_checkpoint: "experiments/quick/lamadt_policy/checkpoints/policy_lora_final.pt"
+  policy_lora:
+    rank: 8
+    alpha: 16
+    dropout: 0.05
+
+data:
+  offline_root: "data/offline/dummy"
+  task_description_path: "data/task_descriptions/descriptions_dummy.json"
+  state_dim: 20
+  action_dim: 6
+
+training:
+  context_length: 10
+
+env:
+  num_episodes_per_task: 2
+  max_episode_steps: 40
+
+runtime:
+  seed: 42
+
+output:
+  result_path: "experiments/quick/results.json"

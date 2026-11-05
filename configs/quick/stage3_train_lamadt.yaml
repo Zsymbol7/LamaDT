@@ -1,0 +1,32 @@
+experiment_name: "quick_stage3_train_lamadt"
+
+model:
+  name: "llama-3.2-1b"
+  policy_lora:
+    rank: 8
+    alpha: 16
+    dropout: 0.05
+  init_from_shared_lora: "experiments/quick/llm_objectives/checkpoints/lora_shared.pt"
+
+data:
+  offline_root: "data/offline/dummy"
+  augmented_root: "data/augmented/dummy"
+  task_description_path: "data/task_descriptions/descriptions_dummy.json"
+  state_dim: 20
+  action_dim: 6
+
+training:
+  total_steps: 50
+  batch_size: 4
+  lr: 5.0e-5
+  weight_decay: 0.01
+  warmup_steps: 5
+  gradient_accumulation: 1
+  context_length: 10
+  max_grad_norm: 1.0
+
+logging:
+  log_every: 10
+  save_every: 50
+  output_dir: "experiments/quick/lamadt_policy"
+  seed: 42

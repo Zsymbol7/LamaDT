@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+
+# LLM weights (downloaded locally, see README)
+llama-3.2-1b
+
+# data & experiment outputs
+data/offline/
+data/augmented/
+experiments/
+*.log
+MUJOCO_LOG.TXT
+.claude/

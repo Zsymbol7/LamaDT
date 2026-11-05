@@ -1,0 +1,34 @@
+experiment_name: "generate_aug_cheetah_dir_v2_full"
+
+model:
+  name: "llama-3.2-1b"
+  lora_checkpoint_dir: "experiments/cheetah_dir/llm_objectives/checkpoints"
+  lora:
+    rank: 16
+    alpha: 32
+    dropout: 0.05
+
+data:
+  offline_root: "data/offline/cheetah_dir"
+  task_description_path: "data/task_descriptions/descriptions_cheetah_dir.json"
+  output_root: "data/augmented/cheetah_dir_v2"
+  state_dim: 20
+  action_dim: 6
+  max_trajectory_length: 200
+
+generation:
+  num_initial_pairs_per_task: 999
+  num_candidates_per_pair: 4
+  keep_top_k_per_pair: 1
+  temperature: 0.8
+  top_p: 0.9
+  chunk_size: 50
+
+scoring:
+  use_objectives: ["O1", "O2", "O3", "O4", "O5", "O6"]
+  length_normalize: true
+
+runtime:
+  device: "cuda"
+  num_workers: 4
+  seed: 42

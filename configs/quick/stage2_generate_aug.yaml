@@ -1,0 +1,33 @@
+experiment_name: "quick_stage2_generate_aug"
+
+model:
+  name: "llama-3.2-1b"
+  lora_checkpoint_dir: "experiments/quick/llm_objectives/checkpoints"
+  lora:
+    rank: 8
+    alpha: 16
+    dropout: 0.05
+
+data:
+  offline_root: "data/offline/dummy"
+  task_description_path: "data/task_descriptions/descriptions_dummy.json"
+  output_root: "data/augmented/dummy"
+  state_dim: 20
+  action_dim: 6
+  max_trajectory_length: 20
+
+generation:
+  num_initial_pairs_per_task: 2
+  num_candidates_per_pair: 2
+  keep_top_k_per_pair: 1
+  temperature: 0.8
+  top_p: 0.9
+
+scoring:
+  use_objectives: ["O1", "O3"]
+  length_normalize: true
+
+runtime:
+  device: "cuda"
+  num_workers: 2
+  seed: 42

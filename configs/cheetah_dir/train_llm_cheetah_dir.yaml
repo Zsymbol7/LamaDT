@@ -1,0 +1,35 @@
+experiment_name: "llm_objectives_cheetah_dir"
+
+model:
+  name: "llama-3.2-1b"
+  lora:
+    rank: 16
+    alpha: 32
+    dropout: 0.05
+
+data:
+  offline_root: "data/offline/cheetah_dir"
+  task_description_path: "data/task_descriptions/descriptions_cheetah_dir.json"
+  state_dim: 20
+  action_dim: 6
+  max_trajectory_length: 200
+  trajectory_window: 20
+
+training:
+  total_steps: 50000
+  batch_size: 16
+  lr: 1.0e-4
+  weight_decay: 0.01
+  warmup_steps: 1000
+  gradient_accumulation: 4
+  max_grad_norm: 1.0
+  objectives: ["O1", "O2", "O3", "O4", "O5", "O6"]
+  objective_sampling: "uniform"
+  use_amp: true
+  gradient_checkpointing: true
+
+logging:
+  log_every: 100
+  save_every: 10000
+  output_dir: "experiments/cheetah_dir/llm_objectives"
+  seed: 42
